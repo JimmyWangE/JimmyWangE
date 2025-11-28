@@ -102,5 +102,5 @@ theme: landscape
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: 'git'
-  repo: https://github.com/JimmyWangE/JimmyWangE.git 
+  repo: https://github.com/JimmyWangE/JimmyWangE.github.io.git 
   branch: gh-pages

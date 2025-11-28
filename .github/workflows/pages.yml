@@ -1,0 +1,33 @@
+name: Deploy Hexo to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # 当main分支有推送时，自动触发部署（如果你的默认分支是master，改为master）
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest  # 使用GitHub提供的Ubuntu服务器
+    steps:
+      - name: Checkout  # 拉取GitHub仓库的源文件
+        uses: actions/checkout@v4
+        with:
+          submodules: true  # 支持子模块（如果有主题依赖）
+
+      - name: Setup Node.js  # 安装Node.js（版本和本地一致，你的是v20）
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'  # 缓存npm依赖，加速构建
+
+      - name: Install dependencies  # 安装Hexo依赖
+        run: npm install
+
+      - name: Generate static files  # 生成静态文件（相当于hexo g）
+        run: npm run build  # 等价于hexo generate
+
+      - name: Deploy to GitHub Pages  # 部署到GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # GitHub自动生成的令牌，无需修改
+          publish_dir: ./public  # 部署public目录下的静态文件

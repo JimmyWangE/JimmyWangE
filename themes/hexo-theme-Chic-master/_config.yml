@@ -1,5 +1,5 @@
 # Header
-navname: Bentham's Blog
+navname: JimmyWangE's Blog
 
 # navigatior items
 nav:
@@ -12,10 +12,10 @@ nav:
 favicon: /favicon.ico
 
 # Profile
-nickname: Jeremy Bentham
+nickname: JimmyWangE
 
 ### this variable is MarkDown form.
-description: Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** <br>Fusce eget urna vitae velit *eleifend interdum at ac* nisi.
+description: 别永远待在第一阶段
 avatar: /image/avatar.jpeg
 
 # main menu navigation
@@ -49,7 +49,7 @@ links:
   # QQ:
   # Weibo:
   # WeChat:
-  Github: https://github.com/Siricee
+  Github: https://github.com/JimmyWangE
 
 # how links show: you have 2 choice--text or icon.
 links_text_enable: false

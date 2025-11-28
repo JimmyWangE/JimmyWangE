@@ -1,33 +1,50 @@
-name: Deploy Hexo to GitHub Pages
+name: Pages
 
 on:
   push:
     branches:
-      - main  # 当main分支有推送时，自动触发部署（如果你的默认分支是master，改为master）
+      - main # default branch
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest  # 使用GitHub提供的Ubuntu服务器
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout  # 拉取GitHub仓库的源文件
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          submodules: true  # 支持子模块（如果有主题依赖）
-
-      - name: Setup Node.js  # 安装Node.js（版本和本地一致，你的是v20）
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # If your repository depends on submodule, please see: https://github.com/actions/checkout
+          submodules: recursive
+      - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'npm'  # 缓存npm依赖，加速构建
-
-      - name: Install dependencies  # 安装Hexo依赖
-        run: npm install
-
-      - name: Generate static files  # 生成静态文件（相当于hexo g）
-        run: npm run build  # 等价于hexo generate
-
-      - name: Deploy to GitHub Pages  # 部署到GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+          # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
+          # Ref: https://github.com/actions/setup-node#supported-version-syntax
+          node-version: "20"
+      - name: Cache NPM dependencies
+        uses: actions/cache@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # GitHub自动生成的令牌，无需修改
-          publish_dir: ./public  # 部署public目录下的静态文件
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

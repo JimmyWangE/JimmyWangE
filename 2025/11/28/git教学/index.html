@@ -13,7 +13,7 @@
 
 
 
-<title>first test | Hexo</title>
+<title>Hexo</title>
 
 
 
@@ -203,7 +203,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">first test</h1>
+            <h1 class="post-title"></h1>
             
                 <div class="post-meta">
                     
@@ -212,7 +212,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">November 28, 2025&nbsp;&nbsp;16:50:40</a>
+                        Date: <a href="#">November 28, 2025&nbsp;&nbsp;17:02:50</a>
                         </span>
                     
                     
@@ -221,17 +221,66 @@
         </header>
 
         <div class="post-content">
-            <h2 id="title-blogTestdate-2021-08-20-18-07-21tags-Testcategories-blog1"><a href="#title-blogTestdate-2021-08-20-18-07-21tags-Testcategories-blog1" class="headerlink" title="title: blogTestdate: 2021-08-20 18:07:21tags: Testcategories: blog1"></a>title: blogTest<br>date: 2021-08-20 18:07:21<br>tags: Test<br>categories: blog1</h2><h3 id="1-This-is-a-blog-Test"><a href="#1-This-is-a-blog-Test" class="headerlink" title="1. This is a blog Test"></a>1. This is a blog Test</h3><ul>
-<li>First</li>
-<li>Second</li>
-</ul>
-<hr>
-<h3 id="2-Show-Text"><a href="#2-Show-Text" class="headerlink" title="2. Show Text"></a>2. Show Text</h3><ul>
-<li><strong>这是加粗</strong><blockquote>
-<p><em>这是斜体</em></p>
-</blockquote>
-</li>
-</ul>
+            <hr>
+<h2 id="title-git-usagedate-2021-08-20-18-07-21tags-Testcategories-blog1"><a href="#title-git-usagedate-2021-08-20-18-07-21tags-Testcategories-blog1" class="headerlink" title="title: git usagedate: 2021-08-20 18:07:21tags: Testcategories: blog1"></a>title: git usage<br>date: 2021-08-20 18:07:21<br>tags: Test<br>categories: blog1</h2><p>使用git’前必须要做的事情（设置用户信息）</p>
+<p>Git config –global user.name” name”随便填</p>
+<p>Git congig –global user.email”@sina.cn”随便填</p>
+<p>（随意）在根目录 touch ~&#x2F;.bashrc</p>
+<p>然后输入</p>
+<p>#用于输出git提交日志</p>
+<p>alias git-log&#x3D;’git log –pretty&#x3D;oneline –all –graph –abbrev-commit’</p>
+<p>#用于输出当初目录所有文件及基本信息</p>
+<p>alias ll&#x3D;’ls -al’</p>
+<p>获取本地仓库：在需要上传的代码文件目录右键git bash</p>
+<p>git init&#x2F;&#x2F;初始化当前目录为一个git仓库</p>
+<p>touch file01.txt创建一个文件</p>
+<p>git status查看当前状态（工作区查看不到内容）</p>
+<p>git add .提交全部内容到暂存区</p>
+<p>git commit -m “add file01.txt”提交到仓库</p>
+<p>git log查看历史记录</p>
+<p>vi file01.txt 修改文件以后按ESC然后按大写ZZ即可保存退出</p>
+<p>git reset –hard d7e1865版本回退版本号可通过git-log（配置好的）</p>
+<p>git reflog查看所有log</p>
+<p>添加文件至忽略列表：先创建touch .gitignore文件</p>
+<p>Vi .gitignore（进去后添加*.a）不需要提交的的文件后缀设置成.a</p>
+<p>Git branch查看分支</p>
+<p>Git branch dev01创建分支</p>
+<p>Git checkout dev01切换分支</p>
+<p>先在master分支然后git merge dev01合并分支（一般时合并到master）</p>
+<p>删除分支git branch -d dev01（D时强制删除）</p>
+<p>git remote add origin 地址 https</p>
+<p>先将内容合并以下$ git pull –rebase origin master</p>
+<p>git push -u origin master可以提交空的</p>
+<p><font style="color:rgb(34, 34, 34);">git pull –rebase origin main 就可以了</font><br><font style="color:rgb(34, 34, 34);">git config –global init.defaultBranch main 将 Git 默认分支从 master 修改为 main，</font></p>
+<p>git push origin main</p>
+<p>git分支从master切换到main</p>
+<p>背景</p>
+<p>本地当前分支为master，远程仓库为main，且远程仓库与本地仓库有 unrelated histories这样的问题，如远程仓库有README.md但本地没有</p>
+<p>steps</p>
+<p>git checkout -b main</p>
+<h1 id="Switched-to-a-new-branch-‘main’"><a href="#Switched-to-a-new-branch-‘main’" class="headerlink" title="Switched to a new branch ‘main’"></a>Switched to a new branch ‘main’</h1><p>git branch</p>
+<h1 id="main"><a href="#main" class="headerlink" title="* main"></a>* main</h1><h1 id="master"><a href="#master" class="headerlink" title="master"></a>master</h1><p>git merge master # 将master分支合并到main上</p>
+<h1 id="Already-up-to-date"><a href="#Already-up-to-date" class="headerlink" title="Already up to date."></a>Already up to date.</h1><p>git pull origin main –allow-unrelated-histories # git pull origin main会报错：refusing to merge unrelated histories</p>
+<p>git push origin main</p>
+<p>完成合并</p>
+<p>删除某个分支</p>
+<p>在本地建立文件夹</p>
+<p>将该分支clone下来</p>
+<p>git clone -b      该分支名        地址</p>
+<p>git  branch -a      (查看远端分支)</p>
+<p>git checkout -b 别的分支</p>
+<p>git branch -D  要删除的分支</p>
+<p>git push origin  –delete     yao 要删除的分支</p>
+<p>完成</p>
+<p>最完整的将main作为主分支提交</p>
+<p>git init</p>
+<p>git checkout -b main</p>
+<p><font style="color:rgb(34, 34, 34);">git config –global init.defaultBranch main</font></p>
+<p>git remote add origin http地址</p>
+<p>git add .</p>
+<p>git commit -m “ “<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33074497/article/details/80506700">  
+</a><font style="color:rgb(34, 34, 34);">git pull –rebase origin main</font></p>
+<p><font style="color:rgb(34, 34, 34);">git push origin main</font></p>
 
         </div>
 
@@ -246,7 +295,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2025/11/28/first-test/">http://example.com/2025/11/28/first-test/</a></span>
+                        <span><a href="http://example.com/2025/11/28/git%E6%95%99%E5%AD%A6/">http://example.com/2025/11/28/git%E6%95%99%E5%AD%A6/</a></span>
                     </p>
                 
                 
@@ -279,10 +328,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2025/11/28/git%E6%95%99%E5%AD%A6/"></a>
             
-            
-            <a class="next" rel="next" href="/2025/11/28/hello-world/">Hello World</a>
+            <a class="next" rel="next" href="/2025/11/28/first-test/">first test</a>
             
         </section>
 
